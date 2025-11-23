@@ -87,10 +87,21 @@
 /* ===========================================
    BASE
    =========================================== */
+/* Define utilitário seguro usado pelo @layer base abaixo */
+@layer utilities {
+  .border-border {
+    /* cor da borda global baseada na variável de tema */
+    border-color: var(--color-border);
+  }
+}
+
 @layer base {
-  * {
-    @apply border border-white/40;
-    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+  /* Define só a COR da borda globalmente, sem criar borda visível */
+  *, *::before, *::after {
+    /* aplica somente a cor da borda via utilitário definido acima */
+    @apply border-border;
+    border-width: 0;
+    border-style: solid;
   }
 
   body {
@@ -105,6 +116,21 @@
   :focus-visible {
     outline: none;
     @apply ring-2 ring-primary/60 ring-offset-2 ring-offset-background;
+  }
+
+  /* Transições suaves só em elementos interativos */
+  button,
+  a,
+  [role="button"],
+  input,
+  select,
+  textarea {
+    transition:
+      background-color .25s ease,
+      color .25s ease,
+      border-color .25s ease,
+      box-shadow .25s ease,
+      transform .2s ease;
   }
 }
 
@@ -149,6 +175,19 @@
 }
 .animate-pulse-soft { animation: softPulse 6s ease-in-out infinite; }
 
+/* Animação anel pisca-duplo (versão refinada) */
+@keyframes blink-double {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  20% { opacity: 1; transform: scale(1.25); }
+  30% { opacity: 0; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.18); }
+  60% { opacity: 0; transform: scale(1); }
+}
+
+.animate-blink-double {
+  animation: blink-double 2.8s ease-out infinite;
+}
+
 /* ===========================================
    INTERAÇÕES PREMIUM
    =========================================== */
@@ -173,3 +212,5 @@
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
+
+html { scroll-behavior: smooth; }

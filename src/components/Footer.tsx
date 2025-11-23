@@ -1,5 +1,5 @@
 import { Button } from "../components/ui/button";
-import { Instagram, MessageCircle, Mail } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   const whatsappLink = "https://wa.me/5513997022072?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20como%20funciona%20seus%20atendimentos";
