@@ -190,8 +190,8 @@ export default function ContactSection() {
 
             <ContactCard
               icon={<span>📍</span>}
-              title="Atendimento Online"
-              subtitle="Guarulhos / SP"
+              title="Atendimento Online e Presencial"
+              subtitle="Guarujá / SP"
               href="#"
               buttonText="Ver endereço"
               btnClass="bg-primary"
